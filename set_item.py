@@ -87,17 +87,22 @@ class item:
 
         try:
             for k in self.itemReinforceSkill:
+                print('\n' + k['jobName'])
                 try:
-                    print('\n' + k['jobName'])
-                    print(k['levelRange'][0]['minLevel'] + '~' + k['levelRange'][0]['maxLevel'] + '스킬 + ' + k['levelRange'][0]['value'])
-                except:
-                    print('\n' + k['jobName'])
                     for l in k['skills']:
-                            print(l['name'] + ' +' + str(l['value']))
+                        print(l['name'] + ' +' + str(l['value']))
+                except:
+                    for l in k['levelRange']:
+                        print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
+                else:
+                    for l in k['levelRange']:
+                        print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
         except:
             pass
-        print('\n' + self.itemFlavorText)
-        print()
+        if self.itemFlavorText != None:
+            print('\n' + self.itemFlavorText)
+            print()
+        else: pass
         self.price()
 
     def price(self):
