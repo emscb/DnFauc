@@ -22,6 +22,7 @@ class item:
                 num += 1
         except:
             print('\n' + '아이템 정보를 가져오지 못했습니다.' + '\n'); return
+
         while(True):
             try:
                 a = input('아이템을 선택하세요 : ')
@@ -93,16 +94,27 @@ class item:
                         print(l['name'] + ' +' + str(l['value']))
                 except:
                     for l in k['levelRange']:
-                        print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
+                        if l['minLevel'] != l['maxLevel']:
+                            print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
+                        else:
+                            print(str(l['minLevel']) + ' Lv 스킬 + ' + str(l['value']))
                 else:
-                    for l in k['levelRange']:
-                        print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
+                    try:
+                        for l in k['levelRange']:
+                            if l['minLevel'] != l['maxLevel']:
+                                print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
+                            else:
+                                print(str(l['minLevel']) + ' Lv 스킬 + ' + str(l['value']))
+                    except:
+                        continue
         except:
             pass
+
         if self.itemFlavorText != None:
             print('\n' + self.itemFlavorText)
             print()
         else: pass
+
         self.price()
 
     def price(self):
@@ -111,5 +123,5 @@ class item:
         if len(f.price) == 0:
             return
         else:
-            print('어제 평균가 : ' + str(f.price[0][4]))
+            print('어제 평균가 : ' + str(f.price[0][2]))
             print()
