@@ -118,10 +118,10 @@ class item:
         self.price()
 
     def price(self):
-        f = auc(self.itemName, 15)
+        f = auc(self.itemName)
         f.run()
         if len(f.price) == 0:
             return
         else:
-            print('어제 평균가 : ' + str(f.price[0][2]))
+            print('어제 평균가 : ' + str(f.price[0][3]))
             print()
