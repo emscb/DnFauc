@@ -4,7 +4,7 @@ class seaskill:
     def __init__(self, name):
         self.skillName = name
 
-        h2 = open('C:/users/관리자/Desktop/skillList.csv', 'r')
+        h2 = open('skillList.csv', 'r')
         h = csv.reader(h2)
         self.jobList = []
         for line in h:
@@ -26,7 +26,7 @@ class seaskill:
         self.open()
 
     def open(self):
-        f2 = open('C:/users/관리자/Desktop/itemList.csv', 'r')
+        f2 = open('itemList.csv', 'r')
         f = csv.reader(f2)
         self.weaponList={'프리스트(남)':['낫', '베틀액스', '십자가', '토템', '염주'],
                          '프리스트(여)':['낫', '베틀액스', '십자가', '토템', '염주'],

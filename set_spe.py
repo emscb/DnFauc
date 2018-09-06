@@ -65,7 +65,7 @@ class calculate:
                 print(a, end='')
                 print('의 가격정보가 저장되어있지 않습니다.')
                 try:
-                    w = open('C:/Users/관리자/Desktop/material.txt', 'a')
+                    w = open('material.txt', 'a')
                 except:
                     print('아이템 목록파일이 없습니다.')
                 w.write(str(a)[1:-1]+'\n')

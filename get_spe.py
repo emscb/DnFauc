@@ -2,7 +2,7 @@ from set_spe import *
 import csv
 while(True):
     try:
-        w = open('C:/Users/관리자/Desktop/material.txt', 'r')
+        w = open('material.txt', 'r')
     except:
         print('아이템 목록파일이 없습니다.')
 
@@ -21,7 +21,7 @@ while(True):
 
     # 제작 방법, 재료 저장 (recipeDict 작성)
     try:
-        u2 = open('C:/Users/관리자/Desktop/recipe.csv', 'r')
+        u2 = open('recipe.csv', 'r')
     except:
         print('레시피 정보가 없습니다.')
     u = csv.reader(u2)

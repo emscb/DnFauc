@@ -50,7 +50,7 @@ class skill:
         self.save()
 
     def save(self):
-        g = open('C:/Users/관리자/Desktop/itemList.csv', 'a', newline='')
+        g = open('itemList.csv', 'a', newline='')
         wr = csv.writer(g)
         for k in self.itemList:
             wr.writerow(k)
