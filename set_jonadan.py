@@ -10,7 +10,7 @@ itemList = []
 
 
 for i in w.readlines():
-    x,y = i.split('-')[0], i.split('-')[1]
+    x, y = i.split('-')[0], i.split('-')[1]
     y = int(y)
     itemList.append((x,y))
 
@@ -22,10 +22,10 @@ for i in itemList:
     num = i[1]
     for j in priceList:
         if j[1] <= num:
-            num-=j[1]
-            price+=j[0]*j[1]
+            num -= j[1]
+            price += j[0]*j[1]
         else:
-            price+=j[0]*num
+            price += j[0]*num
             break
     # 정테를 살 경우 101380
     # 캔 정테로 살 경우 81110

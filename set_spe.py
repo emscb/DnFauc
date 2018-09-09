@@ -1,4 +1,4 @@
-import requests
+from set_auc import auc
 import time
 from tele_api import *
 
@@ -8,20 +8,12 @@ class auc:
         self.url = 'https://api.neople.co.kr/df/auction?itemName=' + itemname + '&limit=100&sort=unitPrice:asc&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
     def crawl(self):    # 경매장 정보 받아오기
-        try:
-            k = requests.get(self.url)
-            if k.status_code !=200:
-                print('경매장 서버에서 정보를 가져오지 못했습니다.')
-                k.close(); time.sleep(5); exit()
-        except:
-            print('경매장 정보를 가져오지 못했습니다.')
-            k.close(); time.sleep(5); exit()
-        if len(k.json()['rows']) != 0:
-            self.aucList = k.json()['rows']
-            k.close()
-        else:
+        a = auc(self.itemname)
+        self.aucList = a.crawl(self.url)
+
+        if len(self.aucList) == 0:
             print('등록된 아이템이 없습니다.\n잠시 후 창이 닫힙니다.')
-            k.close(); time.sleep(5); exit()
+            time.sleep(5); exit()
 
     def process(self):  # (개당가, 개수) list of tuple 생성/반환
         self.priceList = []

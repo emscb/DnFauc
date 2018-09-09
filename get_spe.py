@@ -1,5 +1,6 @@
 from set_spe import *
 import csv
+
 while(True):
     try:
         w = open('material.txt', 'r')
