@@ -1,5 +1,5 @@
 import requests
-from set_auc import auc
+from set_auc import Auc
 
 class item:
     def __init__(self, name):
@@ -118,7 +118,7 @@ class item:
         self.price()
 
     def price(self):
-        f = auc(self.itemName)
+        f = Auc(self.itemName)
         f.run()
         if len(f.price) == 0:
             return

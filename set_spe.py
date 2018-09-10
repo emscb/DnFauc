@@ -1,4 +1,4 @@
-from set_auc import auc
+from set_auc import Auc
 import time
 from tele_api import *
 
@@ -8,7 +8,7 @@ class auc:
         self.url = 'https://api.neople.co.kr/df/auction?itemName=' + itemname + '&limit=100&sort=unitPrice:asc&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
     def crawl(self):    # 경매장 정보 받아오기
-        a = auc(self.itemname)
+        a = Auc(self.itemname)
         self.aucList = a.crawl(self.url)
 
         if len(self.aucList) == 0:
