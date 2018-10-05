@@ -43,11 +43,21 @@ print()
 priceList.sort(key=lambda x: x[1], reverse=True)
 for i in priceList:
     for j in range(itemLimitList[i[0]]):
-        calcList.append(i[0])
+        calcList.append((i[0], i[1]))
 
-r=0
+r = 0
+sum = 0
 while(r<10):
-    print(calcList[r] + "사세요.")
+    print(calcList[r][0] + " 사세요.")
+    sum += calcList[r][1]
     r += 1
-
+sum = int(sum*100/97)
+print('\n' + str(sum) + "골드보다 비싼 카드를 드세요!")
+r = 0
+sum = 0
+while(r<6):
+    sum += calcList[r][1]
+    r += 1
+    sum = int(sum)
+print('\n' + str(sum) + "골드보다 비싼 레어 카드를 드세요!")
 time.sleep(20)
