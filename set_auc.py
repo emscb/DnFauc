@@ -42,14 +42,3 @@ class Auc:
         except:
             print('경매장 정보를 가져오지 못했습니다.'); time.sleep(5); sys.exit()
         return self.price
-
-    def save_in_csv(self, ls, path):
-        g = open(path, 'a', newline='')
-        wr2 = csv.writer(g)
-        if len(ls) != 0:
-            for j in ls:
-                # self.wr.writerow(self.price[j])
-                wr2.writerow(j)
-        else:
-            print('입력할 내용이 없습니다'); time.sleep(5); sys.exit()
-        g.close()
