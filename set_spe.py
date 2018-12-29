@@ -30,12 +30,12 @@ class calculate:
         sum2 = 0
         for i in self.priceList:
             if (sum2 + i[1] > 500):
-                sum+=i[0]*(500-sum2)**2
-                div+=(500-sum2)**2; break
+                sum += i[0]*(500-sum2)**2
+                div += (500-sum2)**2; break
             else:
-                sum+=i[0]*i[1]**2
-                div+=i[1]**2
-                sum2+=i[1]
+                sum += i[0]*i[1]**2
+                div += i[1]**2
+                sum2 += i[1]
         sumdiv = sum/div
         return sumdiv
 

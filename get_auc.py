@@ -1,3 +1,4 @@
+# 경매장 가격 저장
 from set_auc import Auc
 import time
 import sqlite3
@@ -19,7 +20,6 @@ for i in c2:
 for k in itemList:
     itemObj.append(Auc(k))
 
-
 for j in itemObj:
     price = j.get_avgPrice()
     sq = '''INSERT INTO aucInfo VALUES(?,?,?,?)'''
@@ -28,7 +28,9 @@ for j in itemObj:
     conn.commit()
     print(time.ctime(), j.itemname, '\b의 가격이 입력되었습니다.')
 
-mm = 5
+conn.close()
+
+mm = 3
 while mm > 0:
     print(mm, '초 후 창이 닫힙니다.')
     time.sleep(1)
