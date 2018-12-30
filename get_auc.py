@@ -23,7 +23,10 @@ for k in itemList:
 for j in itemObj:
     price = j.get_avgPrice()
     sq = '''INSERT INTO aucInfo VALUES(?,?,?,?)'''
-    value = tuple(price[0])
+    try:
+        value = tuple(price[0])
+    except:
+        print("%s의 가격 정보가 이상해서 넘어갑니다." % j.itemname); continue
     rm = c.execute(sq, value)
     conn.commit()
     print(time.ctime(), j.itemname, '\b의 가격이 입력되었습니다.')
