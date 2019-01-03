@@ -18,10 +18,10 @@ class Auc:
             print("Error code : {code}\nError message : {message}".format(code=k['error']['status'], message=k['error']['message']))
             return 0
 
-        if len(k.json()['rows']) == 0:
+        if len(k['rows']) == 0:
             print('등록된 아이템이 없거나 경매장에 등록할 수 없는 아이템입니다.\n'); return
         else:
-            return k.json()['rows']
+            return k['rows']
 
     def get_avgPrice(self):
         self.price = []
