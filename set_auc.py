@@ -8,9 +8,9 @@ class Auc:
         self.itemname = itemname
         self.url = 'https://api.neople.co.kr/df/auction?itemName=' + itemname + '&limit=5&sort=unitPrice:asc&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
-    def crawl(self, url):   # json 처리만 된 row들의 list
+    def crawl(self):   # json 처리만 된 row들의 list
         try:
-            k = requests.get(url)
+            k = requests.get(self.url)
         except:
             print("경매장 정보를 가져오지 못했습니다."); return
         k = k.json()
@@ -19,7 +19,8 @@ class Auc:
             return 0
 
         if len(k['rows']) == 0:
-            print('등록된 아이템이 없거나 경매장에 등록할 수 없는 아이템입니다.\n'); return
+            print('등록된 아이템이 없거나 경매장에 등록할 수 없는 아이템입니다.\n')
+            return
         else:
             return k['rows']
 

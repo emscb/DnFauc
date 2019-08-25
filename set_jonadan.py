@@ -40,6 +40,10 @@ for i in itemList:
         print(i[0] + "는 경매장에서 사세요.")
 print()
 
+if len(priceList) == 0:
+    print(str(1013800) + "골드보다 비싼 카드를 드세요!")
+    print(str(506900) + "골드보다 비싼 레어 카드를 드세요!"); time.sleep(5); exit()
+
 priceList.sort(key=lambda x: x[1], reverse=True)
 for i in priceList:
     for j in range(itemLimitList[i[0]]):
@@ -48,9 +52,12 @@ for i in priceList:
 r = 0
 sum = 0
 while(r<10):
-    print(calcList[r][0] + " 사세요.")
-    sum += calcList[r][1]
-    r += 1
+    try:
+        print(calcList[r][0] + " 사세요.")
+        sum += calcList[r][1]
+        r += 1
+    except IndexError:
+        print("경매장 정보가 없습니다."); exit()
 sum = int(sum*100/97)
 print('\n' + str(sum) + "골드보다 비싼 카드를 드세요!")
 r = 0
@@ -60,4 +67,4 @@ while(r<6):
     r += 1
     sum = int(sum)
 print('\n' + str(sum) + "골드보다 비싼 레어 카드를 드세요!")
-time.sleep(20)
+time.sleep(10)

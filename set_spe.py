@@ -23,7 +23,7 @@ class auc:
         return self.priceList
 
 class calculate:
-    def avr(self, priceList):   # (개당가, 개수) list에서 하나씩 500 살경우 가격 계산
+    def avr(self, priceList):   # (개당가, 개수) list에서 하나씩 500개 살 경우 개당 가격 계산
         self.priceList = priceList
         sum = 0
         div = 0
