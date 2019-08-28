@@ -38,7 +38,7 @@ class Auc:
             self.now = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday)
         wday = {0:'월', 1:'화', 2:'수', 3:'목', 4:'금', 5:'토', 6:'일'}
 
-        registed_list = self.crawl(self.url)
+        registed_list = self.crawl()
         try:
             for i in registed_list:
                 if i['unitPrice'] != 0:
