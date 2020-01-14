@@ -20,14 +20,13 @@ class Auc:
 
         if len(k['rows']) == 0:
             print('등록된 아이템이 없거나 경매장에 등록할 수 없는 아이템입니다.\n')
-            return
+            return -1
         else:
             return k['rows']
 
     def get_avgPrice(self):
         self.price = []
-        # self.now = "%04d-%02d-%02d %02d:%02d" % (time.localtime().tm_year, time.localtime().tm_mon, time.localtime().tm_mday,
-        #                                               time.localtime().tm_hour, time.localtime().tm_min)
+
         # 어제의 평균가기 때문에 어제 요일을 찾음
         t = time.localtime()
         if t.tm_hour <= 5:
@@ -39,6 +38,9 @@ class Auc:
         wday = {0:'월', 1:'화', 2:'수', 3:'목', 4:'금', 5:'토', 6:'일'}
 
         registed_list = self.crawl()
+        if registed_list == -1:
+            return -1
+
         try:
             for i in registed_list:
                 if i['unitPrice'] != 0:

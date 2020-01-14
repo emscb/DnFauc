@@ -29,7 +29,6 @@ for j in itemObj:
         print("%s의 가격 정보가 이상해서 넘어갑니다." % j.itemname); continue
     rm = c.execute(sq, value)
     conn.commit()
-    # TODO 등록된 아이템 없으면 넘어가기
     print(time.ctime(), j.itemname, '\b의 가격이 입력되었습니다.')
 
 conn.close()
