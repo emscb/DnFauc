@@ -1,4 +1,4 @@
-# 경매장 가격 저장
+# 각 항목에 대해 경매장 평균가를 저장
 from set_auc import Auc
 import time
 import sqlite3
@@ -35,6 +35,5 @@ conn.close()
 
 mm = 3
 while mm > 0:
-    print(mm, '초 후 창이 닫힙니다.')
     time.sleep(1)
     mm -= 1

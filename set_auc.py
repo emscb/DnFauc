@@ -13,7 +13,7 @@ class Auc:
     def crawl(self):
         try:
             k = requests.get(self.url)
-        except: # 인터넷이 되지 않는 경우
+        except:  # 인터넷이 되지 않는 경우
             print("경매장 정보를 가져오지 못했습니다. 인터넷 연결을 확인하세요.")
             return -1
 
@@ -48,7 +48,7 @@ class Auc:
             for i in registed_list:
                 if i['unitPrice'] != 0:
                     self.price.append([self.now, wday[t.tm_wday], i['itemName'], i['averagePrice']])
-        except KeyError: # unitPrice가 없으면 평균가가 적혀있지 않음
+        except KeyError:  # unitPrice가 없으면 평균가가 적혀있지 않음
             print('경매 중이 아닌 아이템이 없어 넘어갑니다.')
             return -1
         return self.price
