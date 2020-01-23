@@ -1,25 +1,28 @@
 import requests
 import time
-import sys
 
 
 class Auc:
     def __init__(self, itemname):
         self.itemname = itemname
-        self.url = 'https://api.neople.co.kr/df/auction?itemName=' + itemname + '&limit=5&sort=unitPrice:asc&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.limit = 5
+        self.url = 'https://api.neople.co.kr/df/auction?itemName=' + itemname + \
+                   '&limit=' + str(self.limit) + '&sort=unitPrice:asc&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
-    def crawl(self):   # json 처리만 된 row들의 list
+    # 처리된 row list 반환
+    def crawl(self):
         try:
             k = requests.get(self.url)
-        except:
-            print("경매장 정보를 가져오지 못했습니다."); return
-        k = k.json()
-        if 'error' in k.keys():
-            print("Error code : {code}\nError message : {message}".format(code=k['error']['status'], message=k['error']['message']))
-            return 0
+        except: # 인터넷이 되지 않는 경우
+            print("경매장 정보를 가져오지 못했습니다. 인터넷 연결을 확인하세요.")
+            return -1
 
-        if len(k['rows']) == 0:
-            print('등록된 아이템이 없거나 경매장에 등록할 수 없는 아이템입니다.\n')
+        k = k.json()
+        if 'error' in k.keys(): # 서버에서 에러가 넘어온 경우
+            print("Error code : {code}\nError message : {message}".format(code=k['error']['status'], message=k['error']['message']))
+            return -1
+        if len(k['rows']) == 0: # 결과가 없는 경우
+            print('등록된 아이템이 없거나 경매장에 등록할 수 없는 아이템입니다.')
             return -1
         else:
             return k['rows']
@@ -27,7 +30,7 @@ class Auc:
     def get_avgPrice(self):
         self.price = []
 
-        # 어제의 평균가기 때문에 어제 요일을 찾음
+        # 어제의 평균가이기 때문에 어제 요일을 찾음
         t = time.localtime()
         if t.tm_hour <= 5:
             t = time.localtime(time.time()-86400.0*2.0)
@@ -45,6 +48,7 @@ class Auc:
             for i in registed_list:
                 if i['unitPrice'] != 0:
                     self.price.append([self.now, wday[t.tm_wday], i['itemName'], i['averagePrice']])
-        except:
-            print('경매장 정보를 가져오지 못했습니다.'); time.sleep(5); sys.exit()
+        except KeyError: # unitPrice가 없으면 평균가가 적혀있지 않음
+            print('경매 중이 아닌 아이템이 없어 넘어갑니다.')
+            return -1
         return self.price
