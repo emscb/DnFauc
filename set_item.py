@@ -13,9 +13,11 @@ class item:
             re = re2.json()['rows']
             for i in re:
                 itemList.append(i['itemName'])
+
             if len(itemList) == 0:
-                print('\n' + '결과가 없습니다.' + '\n')
+                print('\n결과가 없습니다.\n')
                 return
+
             num = 1
             for l in itemList:
                 print(str(num) + '. ' + l)
@@ -42,7 +44,7 @@ class item:
         try:
             o1 = requests.get(self.url2)
             o = o1.json()
-        except:
+        except:  # 인터넷 연결 문제
             print('\n' + '아이템 정보를 가져오지 못했습니다.' + '\n'); return
         self.itemName = o['itemName']
         self.itemRarity = o['itemRarity']
@@ -53,16 +55,16 @@ class item:
         self.itemExplainDetail = o['itemExplainDetail']
         try:
             self.itemFlavorText = o['itemFlavorText']
-        except:
+        except KeyError:
             self.itemFlavorText = None
         self.setItemName = o['setItemName']
         try:
             self.itemStatus = o['itemStatus']
-        except:
+        except KeyError:
             pass
         try:
             self.itemReinforceSkill = o['itemReinforceSkill']
-        except:
+        except KeyError:
             self.itemReinforceSkill = None
 
         o1.close()
@@ -92,7 +94,7 @@ class item:
                 try:
                     for l in k['skills']:
                         print(l['name'] + ' +' + str(l['value']))
-                except:
+                except KeyError:
                     for l in k['levelRange']:
                         if l['minLevel'] != l['maxLevel']:
                             print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
@@ -105,7 +107,7 @@ class item:
                                 print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
                             else:
                                 print(str(l['minLevel']) + ' Lv 스킬 + ' + str(l['value']))
-                    except:
+                    except KeyError:
                         continue
         except:
             pass
