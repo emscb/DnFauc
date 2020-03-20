@@ -18,7 +18,7 @@ class Auc:
             return -1
 
         k = k.json()
-        if 'error' in k.keys(): # 서버에서 에러가 넘어온 경우
+        if 'error' in k.keys():  # 서버에서 에러가 넘어온 경우
             print("Error code : {code}\nError message : {message}".format(code=k['error']['status'], message=k['error']['message']))
             return -1
         if len(k['rows']) == 0: # 결과가 없는 경우
@@ -38,7 +38,7 @@ class Auc:
         else:
             t = time.localtime(time.time()-86400.0)
             self.now = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday)
-        wday = {0:'월', 1:'화', 2:'수', 3:'목', 4:'금', 5:'토', 6:'일'}
+        wday = {0: '월', 1: '화', 2: '수', 3: '목', 4: '금', 5: '토', 6: '일'}
 
         registed_list = self.crawl()
         if registed_list == -1:

@@ -9,11 +9,11 @@ itemObj = []
 try:
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    c2 = c.execute("SELECT itemName FROM item")
-except:
+    itemList_table = c.execute("SELECT itemName FROM item")
+except sqlite3.OperationalError:  # 테이블 없음
     print('DB가 경로상에 없습니다.')
 
-for i in c2:
+for i in itemList_table:
     i = list(i)[0]
     itemList.append(i)
 
@@ -26,7 +26,8 @@ for j in itemObj:
     try:
         value = tuple(price[0])
     except:
-        print("%s의 가격 정보가 이상해서 넘어갑니다." % j.itemname); continue
+        print("%s의 가격 정보가 이상해서 넘어갑니다." % j.itemname)
+        continue
     rm = c.execute(sq, value)
     conn.commit()
     print(time.ctime(), j.itemname, '\b의 가격이 입력되었습니다.')
