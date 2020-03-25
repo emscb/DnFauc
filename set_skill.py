@@ -13,10 +13,10 @@ class skill:
             for i in ce:
                 self.idList.append(i['itemId'])
             if len(self.idList) == 0:
-                print('\n' + '결과가 없습니다.' + '\n')
+                print('\n결과가 없습니다.\n')
                 return
         except:
-            print('\n' + '아이템 정보를 가져오지 못했습니다.' + '\n'); return
+            print('\n아이템 정보를 가져오지 못했습니다.\n'); return
 
     def run(self):
         self.itemList = []

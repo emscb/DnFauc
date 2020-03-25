@@ -15,12 +15,12 @@ class seaskill:
             num = 0
             for i in self.jobList:
                 print(str(num+1) + '. ' + i)
-                num+=1
+                num += 1
             a = int(input('직업군을 선택하세요 : '))
             self.jobName = self.jobList[a-1]
         elif len(self.jobList) == 1:
             self.jobName = self.jobList[0]
-        elif self.jobList == []:
+        elif not self.jobList:
             print('\n스킬 정보가 없습니다.\n'); return
         h2.close()
         self.open()
