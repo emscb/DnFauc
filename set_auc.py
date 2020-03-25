@@ -40,12 +40,12 @@ class Auc:
             self.now = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday)
         wday = {0: '월', 1: '화', 2: '수', 3: '목', 4: '금', 5: '토', 6: '일'}
 
-        registed_list = self.crawl()
-        if registed_list == -1:
+        registered_list = self.crawl()
+        if registered_list == -1:
             return -1
 
         try:
-            for i in registed_list:
+            for i in registered_list:
                 if i['unitPrice'] != 0:
                     self.price.append([self.now, wday[t.tm_wday], i['itemName'], i['averagePrice']])
         except KeyError:  # unitPrice가 없으면 평균가가 적혀있지 않음
