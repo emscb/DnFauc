@@ -49,6 +49,6 @@ class Auc:
                 if i['unitPrice'] != 0:
                     self.price.append([self.now, wday[t.tm_wday], i['itemName'], i['averagePrice']])
         except KeyError:  # unitPrice가 없으면 평균가가 적혀있지 않음
-            print('경매 중이 아닌 아이템이 없어 넘어갑니다.')
+            print('즉시 구매 가능한 아이템이 없어 넘어갑니다.')
             return -1
         return self.price
