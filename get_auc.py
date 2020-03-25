@@ -21,7 +21,6 @@ try:
             itemObj.append(obj)
         else:
             exit(-1)
-
 except sqlite3.OperationalError:  # 테이블 없음
     print('DB가 경로상에 없습니다.')
 
