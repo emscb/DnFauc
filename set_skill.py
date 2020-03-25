@@ -20,31 +20,27 @@ class skill:
 
     def run(self):
         self.itemList = []
-        for l in self.idList:
-            self.url2 = 'https://api.neople.co.kr/df/items/' + l + '?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        for id in self.idList:
+            self.url2 = 'https://api.neople.co.kr/df/items/' + id + '?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
             re2 = requests.get(self.url2)
             re = re2.json()
+
             try:
-                for i in re['itemReinforceSkill']:
-                    try:
-                        for j in range(len(i['skills'])):
-                            self.itemList.append([re['itemName'], l, i['jobName'], re['itemTypeDetail'],
-                                                  i['skills'][j]['name'], i['skills'][j]['value']])
-                            print(re['itemName'] + ' 입력되었습니다.')
-                    except:
-                        for j in range(len(i['levelRange'])):
-                            self.itemList.append([re['itemName'], l, i['jobName'], re['itemTypeDetail'], '모든 스킬',
-                                                  i['levelRange'][j]['minLevel'], i['levelRange'][j]['maxLevel'], i['levelRange'][j]['value']])
-                            print(re['itemName'] + ' 입력되었습니다.')
-                    else:
-                        try:
-                            for j in range(len(i['levelRange'])):
-                                self.itemList.append([re['itemName'], l, i['jobName'], re['itemTypeDetail'], '모든 스킬',
-                                                      i['levelRange'][j]['minLevel'], i['levelRange'][j]['maxLevel'], i['levelRange'][j]['value']])
-                                print(re['itemName'] + ' 입력되었습니다.')
-                        except: continue
-            except:
-                pass
+                reinforce_skill = re['itemReinforceSkill']
+            except KeyError:
+                reinforce_skill = re['itemBuff']['reinforceSkill']
+
+            for i in reinforce_skill:
+                try:
+                    for j in range(len(i['skills'])):
+                        self.itemList.append([re['itemName'], id, i['jobName'], re['itemTypeDetail'],
+                                              i['skills'][j]['name'], i['skills'][j]['value']])
+                        print(re['itemName'] + ' 입력되었습니다.')
+                except KeyError:
+                    for j in range(len(i['levelRange'])):
+                        self.itemList.append([re['itemName'], id, i['jobName'], re['itemTypeDetail'], '모든 스킬',
+                                              i['levelRange'][j]['minLevel'], i['levelRange'][j]['maxLevel'], i['levelRange'][j]['value']])
+                        print(re['itemName'] + ' 입력되었습니다.')
 
             re2.close()
         self.save()
