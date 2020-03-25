@@ -20,6 +20,7 @@ try:
         if obj.status:
             itemObj.append(obj)
         else:
+            time.sleep(3)
             exit(-1)
 except sqlite3.OperationalError:  # 테이블 없음
     print('DB가 경로상에 없습니다.')
