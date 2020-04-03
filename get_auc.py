@@ -15,6 +15,7 @@ try:
         i = list(i)[0]
         itemList.append(i)
 
+    print("경매장 정보 수집 중...\n")
     for k in itemList:
         obj = Auc(k)
         if obj.status:
@@ -22,13 +23,14 @@ try:
         else:
             time.sleep(3)
             exit(-1)
+    print("수집 완료\n")
 except sqlite3.OperationalError:  # 테이블 없음
     print('DB가 경로상에 없습니다.')
 
 for j in itemObj:
     price = j.get_avgPrice()
     if price == -1:
-        exit(-1)
+        continue
     sq = '''INSERT INTO aucInfo VALUES(?,?,?,?)'''
     value = tuple(price[0])
     rm = c.execute(sq, value)

@@ -26,7 +26,7 @@ class Auc:
             print("Error code : {code}\nError message : {message}".format(code=k['error']['status'], message=k['error']['message']))
             return -1
         if len(k['rows']) == 0: # 결과가 없는 경우
-            print('등록된 아이템이 없거나 경매장에 등록할 수 없는 아이템입니다.')
+            print('%s : 등록된 아이템이 없거나 경매장에 등록할 수 없는 아이템입니다.' % self.itemname)
             return []
         else:
             return k['rows']
