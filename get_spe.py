@@ -1,3 +1,4 @@
+# 연금술사: 가장 판매 효율 좋은 소모품 검색
 from src.set_spe import *
 import csv
 

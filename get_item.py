@@ -1,3 +1,4 @@
+# 아이템 상세 정보 검색
 from src.set_item import item
 
 while(True):
