@@ -31,4 +31,4 @@ print('현재 매입가 기준 : ' + str(strd * 97 / 100))
 print('어제 평균가 기준 : ' + str(strd2 * 97 / 100))
 
 T = Telegram('@dnfdodododo')
-T.send('현재 매입가 기준 : ' + str(int(strd * 97 / 100)) + '\n' + '어제 평균가 기준 : ' + str(int(strd2 * 97 / 100)))
+T.send('현재 매입가 기준 : ' + str(int(strd * 97 / 100)) + '\n어제 평균가 기준 : ' + str(int(strd2 * 97 / 100)))
