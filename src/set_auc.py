@@ -17,7 +17,7 @@ class Auc:
     def crawl(self):
         try:
             k = requests.get(self.url)
-        except:  # 인터넷이 되지 않는 경우
+        except requests.exceptions.ConnectionError:  # 인터넷이 되지 않는 경우
             print("경매장 정보를 가져오지 못했습니다. 인터넷 연결을 확인하세요.")
             return -1
 
