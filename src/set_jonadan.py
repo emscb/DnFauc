@@ -1,4 +1,4 @@
-from set_spe import auc
+from src.set_spe import auc
 import time
 
 try:

@@ -1,4 +1,4 @@
-from set_spe import *
+from src.set_spe import *
 from tele_api import *
 
 material = ['생명의 숨결', '용의 심장', '황금 가루', '하급 원소결정', '두툼한 고기']

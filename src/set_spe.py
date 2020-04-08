@@ -1,4 +1,4 @@
-from set_auc import Auc
+from src.set_auc import Auc
 import time
 from tele_api import *
 

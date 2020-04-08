@@ -1,4 +1,4 @@
-from set_seaskill import seaskill
+from src.set_seaskill import seaskill
 
 while(True):
     try:

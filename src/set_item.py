@@ -1,5 +1,5 @@
 import requests
-from set_auc import Auc
+from src.set_auc import Auc
 
 class item:
     def __init__(self, name):

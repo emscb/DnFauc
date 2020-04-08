@@ -1,4 +1,4 @@
-from set_skill import skill
+from src.set_skill import skill
 
 while(True):
     try:

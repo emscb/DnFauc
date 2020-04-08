@@ -1,5 +1,5 @@
 # 각 항목에 대해 경매장 평균가를 저장
-from set_auc import Auc
+from src.set_auc import Auc
 import time
 import sqlite3
 
