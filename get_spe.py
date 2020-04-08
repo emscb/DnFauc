@@ -2,7 +2,7 @@
 from src.set_spe import *
 import csv
 
-while(True):
+while 1:
     try:
         w = open('src/material.txt', 'r')
     except:
@@ -47,7 +47,7 @@ while(True):
     c = calculate()
     print()
     # 경매장에서 구매하지 않을 재료 분석 (reciptDict 변경)
-    while(True):
+    while 1:
         a = input('구매하지 않을 재료가 있습니까? 없으시면 Enter를 입력하십시오 : ')
         if a == '':
             break
