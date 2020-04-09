@@ -29,13 +29,15 @@ class Item:
         while 1:
             try:
                 a = input('아이템을 선택하세요 : ')
-                if a == '다시 검색': break
+                if a == '다시 검색':
+                    break
                 else:
                     self.itemId = re[int(a) - 1]['itemId']
                     self.run()
                     return
             except:
-                print('\n' + "정확한 번호를 입력해주세요! 다시 검색하시려면 '다시 검색'을 입력하세요" + '\n'); continue
+                print('\n' + "정확한 번호를 입력해주세요! 다시 검색하시려면 '다시 검색'을 입력하세요" + '\n')
+                continue
         re2.close()
 
     def run(self):
@@ -47,7 +49,8 @@ class Item:
             o1 = requests.get(self.url2)
             o = o1.json()
         except:  # 인터넷 연결 문제
-            print('\n' + '아이템 정보를 가져오지 못했습니다.' + '\n'); return
+            print('\n' + '아이템 정보를 가져오지 못했습니다.' + '\n')
+            return
         self.itemName = o['itemName']
         self.itemRarity = o['itemRarity']
         self.itemType = o['itemType']
@@ -117,7 +120,8 @@ class Item:
         if self.itemFlavorText != None:
             print('\n' + self.itemFlavorText)
             print()
-        else: pass
+        else:
+            pass
 
         self.price()
 

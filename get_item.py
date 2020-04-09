@@ -5,6 +5,3 @@ while 1:
     name = input('아이템 이름을 입력하세요 : ')
     f = Item(name)
     f.select()
-
-
-print('R')

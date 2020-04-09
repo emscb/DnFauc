@@ -23,7 +23,8 @@ class Auc:
 
         k = k.json()
         if 'error' in k.keys():  # 서버에서 에러가 넘어온 경우
-            print("Error code : {code}\nError message : {message}".format(code=k['error']['status'], message=k['error']['message']))
+            print("Error code : {code}\nError message : {message}".format(code=k['error']['status'],
+                                                                          message=k['error']['message']))
             return -1
         if len(k['rows']) == 0:  # 결과가 없는 경우
             print('%s : 등록된 아이템이 없거나 경매장에 등록할 수 없는 아이템입니다.' % self.item_name)
