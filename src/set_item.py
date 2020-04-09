@@ -1,7 +1,8 @@
 import requests
 from src.set_auc import Auc
 
-class item:
+
+class Item:
     def __init__(self, name):
         # self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
         self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&limit=20&wordType=full&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'

@@ -1,7 +1,8 @@
 import requests
 import csv
 
-class charId:
+
+class CharId:
     def __init__(self, name, server):
         self.url = 'https://api.neople.co.kr/df/servers/' + server + '/characters?characterName=' + name + '&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
@@ -20,7 +21,8 @@ class charId:
 
         k1.close()
 
-class charInf:
+
+class CharInf:
     def __init__(self, id, server):
         self.url = 'https://api.neople.co.kr/df/servers/' + server + '/characters/' + id + '?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
@@ -36,7 +38,8 @@ class charInf:
 
         k1.close()
 
-class charSkill:
+
+class CharSkill:
     def __init__(self, id, server):
         self.url = 'https://api.neople.co.kr/df/servers/' + server + '/characters/' + id + '/skill/style?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
