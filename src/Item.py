@@ -93,8 +93,8 @@ class Item:
 
         for k in self.itemReinforceSkill:
             print('\n' + k['jobName'])
-            try:
-                for l in k['skills']:
+            if 'skills' in k.keys():
+                for skill in k['skills']:
                     print("{name} +{value}".format(name=skill['name'], value=skill['value']))
             except KeyError:
                 for l in k['levelRange']:
