@@ -87,19 +87,19 @@ class Item:
 
         for i in self.itemStatus:
             if str(i['value'])[0] == '-':
-                print(i['name'] + ' ' + str(i['value']))
+                print("{name} {value}".format(name=i['name'], value=i['value']))
             else:
-                print(i['name'] + ' +' + str(i['value']))
+                print("{name} +{value}".format(name=i['name'], value=i['value']))
 
         for k in self.itemReinforceSkill:
             print('\n' + k['jobName'])
             try:
                 for l in k['skills']:
-                    print(l['name'] + ' +' + str(l['value']))
+                    print("{name} +{value}".format(name=skill['name'], value=skill['value']))
             except KeyError:
                 for l in k['levelRange']:
                     if l['minLevel'] != l['maxLevel']:
-                        print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
+                        print("{min} ~ {max} Lv 스킬 + {value}".format(min=range['minLevel'], max=range['maxLevel'], value=range['value']))
                     else:
                         print(str(l['minLevel']) + ' Lv 스킬 + ' + str(l['value']))
             else:
@@ -108,13 +108,12 @@ class Item:
                         if l['minLevel'] != l['maxLevel']:
                             print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
                         else:
-                            print(str(l['minLevel']) + ' Lv 스킬 + ' + str(l['value']))
+                        print("{min} Lv 스킬 + {value}".format(min=range['minLevel'], value=range['value']))
                 except KeyError:
                     continue
 
         if self.itemFlavorText is not None:
-            print('\n' + self.itemFlavorText)
-            print()
+            print('\n' + self.itemFlavorText + '\n')
         else:
             pass
 
