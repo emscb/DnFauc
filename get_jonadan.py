@@ -2,7 +2,7 @@ from src.set_spe import auc
 import time
 
 try:
-    w = open('jonadan.txt', 'r')
+    w = open('src/jonadan.txt', 'r')
 except:
     print("목록파일이 없습니다.")
 
@@ -51,7 +51,7 @@ for i in priceList:
 
 r = 0
 sum = 0
-while(r<10):
+while r < 10:
     try:
         print(calcList[r][0] + " 사세요.")
         sum += calcList[r][1]
@@ -62,7 +62,7 @@ sum = int(sum*100/97)
 print('\n' + str(sum) + "골드보다 비싼 카드를 드세요!")
 r = 0
 sum = 0
-while(r<6):
+while r < 6:
     sum += calcList[r][1]
     r += 1
     sum = int(sum)
