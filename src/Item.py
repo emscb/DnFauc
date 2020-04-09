@@ -114,8 +114,6 @@ class Item:
 
         if self.itemFlavorText is not None:
             print('\n' + self.itemFlavorText + '\n')
-        else:
-            pass
 
         self.price()
 
