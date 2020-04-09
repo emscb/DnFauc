@@ -42,7 +42,6 @@ class Item:
 
     def run(self):
         # try:
-        self.url2 = 'https://api.neople.co.kr/df/items/' + self.itemId + '?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
         # except:
         #     print('\n' + '아이템 이름이 잘못되었습니다.' + '\n'); return
         try:
@@ -75,11 +74,11 @@ class Item:
         o1.close()
         self.printInf()
 
-    def printInf(self):
-        try:
-            print('\n' + self.itemName + '\n' + self.setItemName + '\n')
-        except:
-            print('\n' + self.itemName + '\n')
+    def print_info(self):
+        if self.setItemName == "":
+            print("\n{name}\n".format(name=self.itemName))
+        else:
+            print("\n{name}\n{setName}\n".format(name=self.itemName, setName=self.setItemName))
         print(self.itemRarity + ' ' + self.itemTypeDetail)
         print('레벨제한 ' + str(self.itemAvailableLevel))
         print(self.itemObtainInfo)
