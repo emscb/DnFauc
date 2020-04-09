@@ -96,9 +96,9 @@ class Item:
             if 'skills' in k.keys():
                 for skill in k['skills']:
                     print("{name} +{value}".format(name=skill['name'], value=skill['value']))
-            except KeyError:
-                for l in k['levelRange']:
-                    if l['minLevel'] != l['maxLevel']:
+            if 'levelRange' in k.keys():
+                for range in k['levelRange']:
+                    if range['minLevel'] != range['maxLevel']:
                         print("{min} ~ {max} Lv 스킬 + {value}".format(min=range['minLevel'], max=range['maxLevel'], value=range['value']))
                     else:
                         print(str(l['minLevel']) + ' Lv 스킬 + ' + str(l['value']))
