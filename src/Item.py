@@ -84,38 +84,33 @@ class Item:
         print('레벨제한 ' + str(self.itemAvailableLevel))
         print(self.itemObtainInfo)
         print(self.itemExplainDetail + '\n')
-        try:
-            for i in self.itemStatus:
-                if str(i['value'])[0] == '-':
-                    print(i['name'] + ' ' + str(i['value']))
-                else:
-                    print(i['name'] + ' +' + str(i['value']))
-        except:
-            pass
 
-        try:
-            for k in self.itemReinforceSkill:
-                print('\n' + k['jobName'])
+        for i in self.itemStatus:
+            if str(i['value'])[0] == '-':
+                print(i['name'] + ' ' + str(i['value']))
+            else:
+                print(i['name'] + ' +' + str(i['value']))
+
+        for k in self.itemReinforceSkill:
+            print('\n' + k['jobName'])
+            try:
+                for l in k['skills']:
+                    print(l['name'] + ' +' + str(l['value']))
+            except KeyError:
+                for l in k['levelRange']:
+                    if l['minLevel'] != l['maxLevel']:
+                        print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
+                    else:
+                        print(str(l['minLevel']) + ' Lv 스킬 + ' + str(l['value']))
+            else:
                 try:
-                    for l in k['skills']:
-                        print(l['name'] + ' +' + str(l['value']))
-                except KeyError:
                     for l in k['levelRange']:
                         if l['minLevel'] != l['maxLevel']:
                             print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
                         else:
                             print(str(l['minLevel']) + ' Lv 스킬 + ' + str(l['value']))
-                else:
-                    try:
-                        for l in k['levelRange']:
-                            if l['minLevel'] != l['maxLevel']:
-                                print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
-                            else:
-                                print(str(l['minLevel']) + ' Lv 스킬 + ' + str(l['value']))
-                    except KeyError:
-                        continue
-        except:
-            pass
+                except KeyError:
+                    continue
 
         if self.itemFlavorText is not None:
             print('\n' + self.itemFlavorText)
