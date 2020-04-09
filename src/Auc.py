@@ -41,10 +41,10 @@ class Auc:
         # 어제의 평균가이기 때문에 어제 요일을 찾음
         t = time.localtime()
         if t.tm_hour <= 5:
-            t = time.localtime(time.time()-86400.0*2.0)
+            t = time.localtime(time.time() - 86400.0 * 2.0)
             now = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday)
         else:
-            t = time.localtime(time.time()-86400.0)
+            t = time.localtime(time.time() - 86400.0)
             now = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday)
         weekday = {0: '월', 1: '화', 2: '수', 3: '목', 4: '금', 5: '토', 6: '일'}
 

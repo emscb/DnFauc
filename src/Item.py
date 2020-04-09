@@ -23,7 +23,7 @@ class Item:
                 print(str(num) + '. ' + item)
                 num += 1
         except:
-            print('\n' + '아이템 정보를 가져오지 못했습니다.' + '\n')
+            print('\n아이템 정보를 가져오지 못했습니다.\n')
             return
 
         while 1:
@@ -36,7 +36,7 @@ class Item:
                     self.run()
                     return
             except:
-                print('\n' + "정확한 번호를 입력해주세요! 다시 검색하시려면 '다시 검색'을 입력하세요" + '\n')
+                print('\n정확한 번호를 입력해주세요! 다시 검색하시려면 "다시 검색"을 입력하세요\n')
                 continue
         re2.close()
 
@@ -117,7 +117,7 @@ class Item:
         except:
             pass
 
-        if self.itemFlavorText != None:
+        if self.itemFlavorText is not None:
             print('\n' + self.itemFlavorText)
             print()
         else:
@@ -127,8 +127,7 @@ class Item:
 
     def price(self):
         f = Auc(self.itemName)
-        f.run()
-        if len(f.price) == 0:
+        if not f.price:
             return
         else:
             print('어제 평균가 : ' + str(f.price[0][3]))
