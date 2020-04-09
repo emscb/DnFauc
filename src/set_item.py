@@ -4,7 +4,6 @@ from src.set_auc import Auc
 
 class Item:
     def __init__(self, name):
-        # self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
         self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&limit=20&wordType=full&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
     def select(self):
@@ -24,9 +23,10 @@ class Item:
                 print(str(num) + '. ' + l)
                 num += 1
         except:
-            print('\n' + '아이템 정보를 가져오지 못했습니다.' + '\n'); return
+            print('\n' + '아이템 정보를 가져오지 못했습니다.' + '\n')
+            return
 
-        while(True):
+        while 1:
             try:
                 a = input('아이템을 선택하세요 : ')
                 if a == '다시 검색': break

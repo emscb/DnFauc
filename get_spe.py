@@ -31,11 +31,11 @@ while 1:
     for line in u:
         tempDict = {}
         num = 0
-        while(True):
+        while 1:
             try:
                 if line[1:][num] != '':
                     tempDict[line[1:][num]] = line[1:][num+1]
-                    num+=2
+                    num += 2
                 else:
                     break
             except:
