@@ -101,16 +101,7 @@ class Item:
                     if range['minLevel'] != range['maxLevel']:
                         print("{min} ~ {max} Lv 스킬 + {value}".format(min=range['minLevel'], max=range['maxLevel'], value=range['value']))
                     else:
-                        print(str(l['minLevel']) + ' Lv 스킬 + ' + str(l['value']))
-            else:
-                try:
-                    for l in k['levelRange']:
-                        if l['minLevel'] != l['maxLevel']:
-                            print(str(l['minLevel']) + ' ~ ' + str(l['maxLevel']) + ' Lv 스킬 + ' + str(l['value']))
-                        else:
                         print("{min} Lv 스킬 + {value}".format(min=range['minLevel'], value=range['value']))
-                except KeyError:
-                    continue
 
         if self.itemFlavorText is not None:
             print('\n' + self.itemFlavorText + '\n')
