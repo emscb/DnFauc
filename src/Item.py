@@ -1,5 +1,5 @@
 import requests
-from src.set_auc import Auc
+from src.Auc import Auc
 
 
 class Item:
@@ -7,20 +7,20 @@ class Item:
         self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&limit=20&wordType=full&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
     def select(self):
-        itemList = []
+        item_list = []
         try:
             re2 = requests.get(self.url)
             re = re2.json()['rows']
             for i in re:
-                itemList.append(i['itemName'])
+                item_list.append(i['itemName'])
 
-            if len(itemList) == 0:
+            if len(item_list) == 0:
                 print('\n결과가 없습니다.\n')
                 return
 
             num = 1
-            for l in itemList:
-                print(str(num) + '. ' + l)
+            for item in item_list:
+                print(str(num) + '. ' + item)
                 num += 1
         except:
             print('\n' + '아이템 정보를 가져오지 못했습니다.' + '\n')
@@ -32,7 +32,8 @@ class Item:
                 if a == '다시 검색': break
                 else:
                     self.itemId = re[int(a) - 1]['itemId']
-                    self.run(); return
+                    self.run()
+                    return
             except:
                 print('\n' + "정확한 번호를 입력해주세요! 다시 검색하시려면 '다시 검색'을 입력하세요" + '\n'); continue
         re2.close()

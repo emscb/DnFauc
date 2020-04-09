@@ -1,5 +1,5 @@
 # 각 항목에 대해 경매장 평균가를 저장
-from src.set_auc import Auc
+from src.Auc import Auc
 import time
 import sqlite3
 
@@ -28,14 +28,14 @@ except sqlite3.OperationalError:  # 테이블 없음
     print('DB가 경로상에 없습니다.')
 
 for j in itemObj:
-    price = j.get_avgPrice()
+    price = j.get_avg_price()
     if price == -1:
         continue
     sq = '''INSERT INTO aucInfo VALUES(?,?,?,?)'''
     value = tuple(price[0])
     rm = c.execute(sq, value)
     conn.commit()
-    print(time.ctime(), j.itemname, '\b의 가격이 입력되었습니다.')
+    print(time.ctime(), j.item_name, '\b의 가격이 입력되었습니다.')
 
 conn.close()
 
