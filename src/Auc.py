@@ -12,6 +12,7 @@ class Auc:
         self.registered_list = self.crawl()
         if self.registered_list != -1:
             self.status = True
+        self.price = []
 
     # 처리된 row list 반환
     def crawl(self):
@@ -36,8 +37,6 @@ class Auc:
         if not self.registered_list:
             return -1
 
-        price = []
-
         # 어제의 평균가이기 때문에 어제 요일을 찾음
         t = time.localtime()
         if t.tm_hour <= 5:
@@ -51,8 +50,8 @@ class Auc:
         try:
             for i in self.registered_list:
                 if i['unitPrice'] != 0:
-                    price.append([now, weekday[t.tm_wday], i['itemName'], i['averagePrice']])
+                    self.price.append([now, weekday[t.tm_wday], i['itemName'], i['averagePrice']])
         except KeyError:  # unitPrice가 없으면 평균가가 적혀있지 않음
             print('즉시 구매 가능한 아이템이 없어 넘어갑니다.')
             return -1
-        return price
+        return self.price
