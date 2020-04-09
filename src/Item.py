@@ -5,6 +5,9 @@ from src.Auc import Auc
 class Item:
     def __init__(self, name):
         self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&limit=20&wordType=match&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.url2 = self.itemName = self.itemRarity = self.itemType = self.itemTypeDetail = self.itemAvailableLevel\
+            = self.itemObtainInfo = self.itemExplainDetail = self.itemFlavorText = self.setItemName = self.itemName\
+            = self.itemStatus = self.itemReinforceSkill = ""
 
     def select(self):
         item_list = []
@@ -41,13 +44,11 @@ class Item:
         re2.close()
 
     def run(self):
-        # try:
-        # except:
-        #     print('\n' + '아이템 이름이 잘못되었습니다.' + '\n'); return
+        self.url2 = 'https://api.neople.co.kr/df/items/{id}?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'.format(id=self.itemId)
         try:
             o1 = requests.get(self.url2)
             o = o1.json()
-        except:  # 인터넷 연결 문제
+        except requests.exceptions.ConnectionError:  # 인터넷 연결 문제
             print('\n' + '아이템 정보를 가져오지 못했습니다.' + '\n')
             return
         self.itemName = o['itemName']
@@ -72,7 +73,7 @@ class Item:
             self.itemReinforceSkill = None
 
         o1.close()
-        self.printInf()
+        self.print_info()
 
     def print_info(self):
         if self.setItemName == "":
