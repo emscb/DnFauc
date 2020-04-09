@@ -4,7 +4,7 @@ from src.Auc import Auc
 
 class Item:
     def __init__(self, name):
-        self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&limit=20&wordType=full&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&limit=20&wordType=match&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
     def select(self):
         item_list = []
