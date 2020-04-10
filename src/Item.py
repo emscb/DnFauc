@@ -5,7 +5,7 @@ from src.Auc import Auc
 class Item:
     def __init__(self, name):
         self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&limit=20&wordType=match&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
-        self.url2 = self.itemName = self.itemRarity = self.itemType = self.itemTypeDetail = self.itemAvailableLevel\
+        self.url2 = self.itemId = self.itemName = self.itemRarity = self.itemType = self.itemTypeDetail = self.itemAvailableLevel\
             = self.itemObtainInfo = self.itemExplainDetail = self.itemFlavorText = self.setItemName = self.itemName\
             = self.itemStatus = self.itemReinforceSkill = ""
 
