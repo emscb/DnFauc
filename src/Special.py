@@ -59,14 +59,12 @@ class Calculate:
                 # 이득을 못보는 아이템은 애초에 추가하지 않음
                 if price < self.avrList[i]:
                     self.manuPrice[i] = price
-                else:
-                    pass
             except Exception as a:
                 print(a, end='')
                 print('의 가격정보가 저장되어있지 않습니다.')
                 try:
                     w = open('material.txt', 'a')
-                except:
+                except FileNotFoundError:
                     print('아이템 목록파일이 없습니다.')
                 w.write(str(a)[1:-1] + '\n')
                 print('아이템 목록에 추가합니다.')
@@ -83,8 +81,6 @@ class Calculate:
             for j in self.recipeDict[i].keys():
                 if j == a:
                     self.recipeDict[i][j] = 0
-                else:
-                    continue
         return self.recipeDict
 
     def benefit(self, price_list, manu_list):
@@ -95,6 +91,7 @@ class Calculate:
             return
         for i in self.madePrice.keys():
             self.benePrice.append([i, int((self.sellingPrice[i] - self.madePrice[i]) * 97)])
+
         # 이익이 큰 순으로 정렬
         self.benePrice = sorted(self.benePrice, key=lambda x: x[1], reverse=True)
 
@@ -102,6 +99,7 @@ class Calculate:
         for j in self.benePrice:
             print('%-14s\t100개당 %6d만큼의 이득입니다.' % (j[0], j[1]))
             message += '%-14s\t100개당 %6d만큼의 이득입니다.\n' % (j[0], j[1])
+
         T = Telegram('@dnfdodododo')
         T.send(message)
         time.sleep(30)
