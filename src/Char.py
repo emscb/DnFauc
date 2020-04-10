@@ -10,7 +10,7 @@ class CharId:
         try:
             k1 = requests.get(self.url)
             k = k1.json()['rows'][0]
-        except:
+        except requests.exceptions.ConnectionError:
             print('캐릭터 정보를 가져오지 못했습니다.'); return
         self.characterId = k['characterId']
         self.level = k['level']
@@ -30,7 +30,7 @@ class CharInf:
         try:
             k1 = requests.get(self.url)
             k = k1.json()
-        except:
+        except requests.exceptions.ConnectionError:
             print('캐릭터 정보를 가져오지 못했습니다.'); return
         self.adventureName = k['adventureName']
         self.guildId = k['guildId']
@@ -48,7 +48,7 @@ class CharSkill:
         try:
             k1 = requests.get(self.url)
             k = k1.json()
-        except:
+        except requests.exceptions.ConnectionError:
             print('캐릭터 정보를 가져오지 못했습니다.'); return
         for i in k['skill']['style']:
             for j in k['skill']['style'][i]:
