@@ -25,7 +25,7 @@ class Item:
             for item in item_list:
                 print(str(num) + '. ' + item)
                 num += 1
-        except:
+        except requests.exceptions.ConnectionError:
             print('\n아이템 정보를 가져오지 못했습니다.\n')
             return
 
@@ -38,7 +38,7 @@ class Item:
                     self.itemId = re[int(a) - 1]['itemId']
                     self.run()
                     return
-            except:
+            except IndexError:
                 print('\n정확한 번호를 입력해주세요! 다시 검색하시려면 "다시 검색"을 입력하세요\n')
                 continue
         re2.close()
