@@ -85,19 +85,19 @@ class Item:
         print(self.itemObtainInfo)
         print(self.itemExplainDetail + '\n')
 
-        for i in self.itemStatus:
-            if str(i['value'])[0] == '-':
-                print("{name} {value}".format(name=i['name'], value=i['value']))
+        for status in self.itemStatus:
+            if str(status['value'])[0] == '-':
+                print("{name} {value}".format(name=status['name'], value=status['value']))
             else:
-                print("{name} +{value}".format(name=i['name'], value=i['value']))
+                print("{name} +{value}".format(name=status['name'], value=status['value']))
 
-        for k in self.itemReinforceSkill:
-            print('\n' + k['jobName'])
-            if 'skills' in k.keys():
-                for skill in k['skills']:
+        for skill in self.itemReinforceSkill:
+            print('\n' + skill['jobName'])
+            if 'skills' in skill.keys():
+                for skill in skill['skills']:
                     print("{name} +{value}".format(name=skill['name'], value=skill['value']))
-            if 'levelRange' in k.keys():
-                for range in k['levelRange']:
+            if 'levelRange' in skill.keys():
+                for range in skill['levelRange']:
                     if range['minLevel'] != range['maxLevel']:
                         print("{min} ~ {max} Lv 스킬 + {value}".format(min=range['minLevel'], max=range['maxLevel'], value=range['value']))
                     else:
