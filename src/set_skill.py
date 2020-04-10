@@ -17,7 +17,8 @@ class skill:
                 print('\n결과가 없습니다.\n')
                 return
         except:
-            print('\n아이템 정보를 가져오지 못했습니다.\n'); return
+            print('\n아이템 정보를 가져오지 못했습니다.\n')
+            return
 
     def run(self):
         self.itemList = []
@@ -40,7 +41,8 @@ class skill:
                 except KeyError:
                     for j in range(len(i['levelRange'])):
                         self.itemList.append([re['itemName'], id, i['jobName'], re['itemTypeDetail'], '모든 스킬',
-                                              i['levelRange'][j]['minLevel'], i['levelRange'][j]['maxLevel'], i['levelRange'][j]['value']])
+                                              i['levelRange'][j]['minLevel'], i['levelRange'][j]['maxLevel'],
+                                              i['levelRange'][j]['value']])
                         print(re['itemName'] + ' 입력되었습니다.')
 
             re2.close()
@@ -53,4 +55,3 @@ class skill:
             wr.writerow(k)
         g.close()
         print('\n최종 입력이 완료되었습니다.\n')
-
