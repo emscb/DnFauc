@@ -4,7 +4,8 @@ import csv
 
 class CharId:
     def __init__(self, name, server):
-        self.url = 'https://api.neople.co.kr/df/servers/' + server + '/characters?characterName=' + name + '&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.url = "https://api.neople.co.kr/df/servers/{server}/characters?characterName={name}&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG".format(
+            server=server, name=name)
         self.characterId = self.level = self.jobId = self.jodGrowId = self.jobName = self.jobGrowName = ""
 
     def run(self):
@@ -12,7 +13,8 @@ class CharId:
             k1 = requests.get(self.url)
             k = k1.json()['rows'][0]
         except requests.exceptions.ConnectionError:
-            print('캐릭터 정보를 가져오지 못했습니다.'); return
+            print('캐릭터 정보를 가져오지 못했습니다.')
+            return
         self.characterId = k['characterId']
         self.level = k['level']
         self.jobId = k['jobId']
@@ -25,7 +27,8 @@ class CharId:
 
 class CharInf:
     def __init__(self, id, server):
-        self.url = 'https://api.neople.co.kr/df/servers/' + server + '/characters/' + id + '?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.url = "https://api.neople.co.kr/df/servers/{server}/characters/{id}?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG".format(
+            server=server, id=id)
         self.adventureName = self.guildId = self.guildName = ""
 
     def run(self):
@@ -33,7 +36,8 @@ class CharInf:
             k1 = requests.get(self.url)
             k = k1.json()
         except requests.exceptions.ConnectionError:
-            print('캐릭터 정보를 가져오지 못했습니다.'); return
+            print('캐릭터 정보를 가져오지 못했습니다.')
+            return
         self.adventureName = k['adventureName']
         self.guildId = k['guildId']
         self.guildName = k['guildName']
@@ -43,16 +47,17 @@ class CharInf:
 
 class CharSkill:
     def __init__(self, id, server):
-        self.url = 'https://api.neople.co.kr/df/servers/' + server + '/characters/' + id + '/skill/style?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.url = 'https://api.neople.co.kr/df/servers/{server}/characters/{id}/skill/style?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'.format(
+            server=server, id=id)
         self.skillList = []
 
     def run(self):
-        self.skillList = []
         try:
             k1 = requests.get(self.url)
             k = k1.json()
         except requests.exceptions.ConnectionError:
-            print('캐릭터 정보를 가져오지 못했습니다.'); return
+            print('캐릭터 정보를 가져오지 못했습니다.')
+            return
         for i in k['skill']['style']:
             for j in k['skill']['style'][i]:
                 self.skillList.append([k['jobName'], j['name'], j['requiredLevel']])
@@ -66,4 +71,3 @@ class CharSkill:
             wr.writerow(k)
         g.close()
         print('\n최종 입력이 완료되었습니다.\n')
-
