@@ -1,7 +1,7 @@
 import csv
 
 
-class seaSkill:
+class SearchSkill:
     def __init__(self, name):
         self.skillName = name
 
@@ -22,7 +22,7 @@ class seaSkill:
         elif len(self.jobList) == 1:
             self.jobName = self.jobList[0]
         elif not self.jobList:
-            print('\n스킬 정보가 없습니다.\n');
+            print('\n스킬 정보가 없습니다.\n')
             return
         h2.close()
         self.open()
@@ -59,19 +59,13 @@ class seaSkill:
             elif line[4] == '모든 스킬' and line[2] == self.jobName:
                 if int(self.skillReLevel) in range(int(line[5]), int(line[6]) + 1):
                     print('+' + line[7] + ' (' + line[3] + ') ' + line[0])
-                else:
-                    continue
             elif line[4] == '모든 스킬' and line[2] == '공통':
-                if line[3] in self.elseeqipList:
+                if line[3] in self.equipmentList:
                     if int(self.skillReLevel) in range(int(line[5]), int(line[6]) + 1):
                         print('+' + line[7] + ' (' + line[3] + ') ' + line[0])
-                    else:
-                        continue
                 elif line[3] in self.weaponList[self.jobName]:
                     if int(self.skillReLevel) in range(int(line[5]), int(line[6]) + 1):
                         print('+' + line[7] + ' (' + line[3] + ') ' + line[0])
-                    else:
-                        continue
 
         print()
         f2.close()
