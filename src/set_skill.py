@@ -2,7 +2,7 @@ import csv
 import requests
 
 
-class skill:
+class Skill:
     def __init__(self, name):
         self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&limit=30&wordType=match&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
 
