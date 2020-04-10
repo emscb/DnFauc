@@ -5,6 +5,7 @@ import csv
 class CharId:
     def __init__(self, name, server):
         self.url = 'https://api.neople.co.kr/df/servers/' + server + '/characters?characterName=' + name + '&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.characterId = self.level = self.jobId = self.jodGrowId = self.jobName = self.jobGrowName = ""
 
     def run(self):
         try:
@@ -25,6 +26,7 @@ class CharId:
 class CharInf:
     def __init__(self, id, server):
         self.url = 'https://api.neople.co.kr/df/servers/' + server + '/characters/' + id + '?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.adventureName = self.guildId = self.guildName = ""
 
     def run(self):
         try:
@@ -42,6 +44,7 @@ class CharInf:
 class CharSkill:
     def __init__(self, id, server):
         self.url = 'https://api.neople.co.kr/df/servers/' + server + '/characters/' + id + '/skill/style?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.skillList = []
 
     def run(self):
         self.skillList = []
