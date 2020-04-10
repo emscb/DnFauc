@@ -1,5 +1,5 @@
 # 연금술사: 가장 판매 효율 좋은 소모품 검색
-from src.set_spe import *
+from src.Special import *
 import csv
 
 while 1:
@@ -12,10 +12,10 @@ while 1:
     avrList = {}
     for i in w.readlines():
         i = i.strip()
-        k = auc(i)
+        k = AucInfo(i)
         k.crawl()
         p = k.process()
-        k2 = calculate()
+        k2 = Calculate()
         avrList[i] = k2.avr(p)
         print(i+'의 가격이 저장되었습니다.')
     w.close()
@@ -44,7 +44,7 @@ while 1:
     # print(recipeDict)
 
     # 제작 방법에 따른 제작 비용 계산을 위한 객체 생성
-    c = calculate()
+    c = Calculate()
     print()
     # 경매장에서 구매하지 않을 재료 분석 (reciptDict 변경)
     while 1:

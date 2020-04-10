@@ -4,10 +4,11 @@ import requests
 
 class Skill:
     def __init__(self, name):
-        self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&limit=30&wordType=match&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.url = 'https://api.neople.co.kr/df/items?itemName={name}&limit=30&wordType=match&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'.format(name=name)
+        self.itemList = []
+        self.idList = []
 
     def listing(self):
-        self.idList = []
         try:
             ce2 = requests.get(self.url)
             ce = ce2.json()['rows']
@@ -16,16 +17,19 @@ class Skill:
             if len(self.idList) == 0:
                 print('\n결과가 없습니다.\n')
                 return
-        except:
+        except requests.exceptions.ConnectionError:
             print('\n아이템 정보를 가져오지 못했습니다.\n')
             return
 
     def run(self):
-        self.itemList = []
         for id in self.idList:
-            self.url2 = 'https://api.neople.co.kr/df/items/' + id + '?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
-            re2 = requests.get(self.url2)
-            re = re2.json()
+            url2 = 'https://api.neople.co.kr/df/items/{id}?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'.format(id=id)
+            try:
+                re2 = requests.get(url2)
+                re = re2.json()
+            except requests.exceptions.ConnectionError:
+                print("\n아이템 정보를 가져오지 못했습니다.\n")
+                return
 
             try:
                 reinforce_skill = re['itemReinforceSkill']

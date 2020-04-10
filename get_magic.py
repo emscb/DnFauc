@@ -1,4 +1,4 @@
-from src.set_spe import *
+from src.Special import *
 from tele_api import *
 
 material = ['생명의 숨결', '용의 심장', '황금 가루', '하급 원소결정', '두툼한 고기']
@@ -6,12 +6,12 @@ matPrice = {}
 matPrice2 = {}
 # 각각의 매입가 작성 (matPrice 작성)
 for m in material:
-    a = auc(m)
+    a = AucInfo(m)
     a.crawl()
 
     # 현재 1000개 매입가로 계산
     priceList = a.process()
-    c = calculate()
+    c = Calculate()
     cost = c.avr(priceList)
     matPrice[m] = cost
 

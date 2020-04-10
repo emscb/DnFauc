@@ -3,10 +3,10 @@ import time
 
 
 class Auc:
-    def __init__(self, itemname):
-        self.item_name = itemname
+    def __init__(self, name):
+        self.item_name = name
         self.limit = 5
-        self.url = 'https://api.neople.co.kr/df/auction?itemName=' + itemname + \
+        self.url = 'https://api.neople.co.kr/df/auction?itemName=' + name + \
                    '&limit=' + str(self.limit) + '&sort=unitPrice:asc&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
         self.status = False
         self.registered_list = self.crawl()

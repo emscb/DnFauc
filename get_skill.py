@@ -1,5 +1,5 @@
 # 아이템 스킬 레벨링 정보 저장
-from src.set_skill import Skill
+from src.Skill import Skill
 
 while 1:
     try:

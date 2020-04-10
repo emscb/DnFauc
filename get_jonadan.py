@@ -1,4 +1,4 @@
-from src.set_spe import auc
+from src.Special import AucInfo
 import time
 
 try:
@@ -18,7 +18,7 @@ for i in w.readlines():
     itemLimitList[x] = int(i.split('-')[2])
 
 for i in itemList:
-    a = auc(i[0])
+    a = AucInfo(i[0])
     a.crawl()
     aucList = a.process()
     price = 0
