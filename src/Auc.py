@@ -1,13 +1,14 @@
 import requests
 import time
+from Config import API_KEY
 
 
 class Auc:
     def __init__(self, name):
         self.item_name = name
         self.limit = 5
-        self.url = 'https://api.neople.co.kr/df/auction?itemName=' + name + \
-                   '&limit=' + str(self.limit) + '&sort=unitPrice:asc&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
+        self.url = "https://api.neople.co.kr/df/auction?itemName={name}&limit={limit}&sort=unitPrice:asc&apikey={key}"\
+            .format(name=name, limit=self.limit, key=API_KEY)
         self.status = False
         self.registered_list = self.crawl()
         if self.registered_list != -1:

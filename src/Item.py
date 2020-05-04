@@ -1,13 +1,16 @@
 import requests
 from src.Auc import Auc
+from Config import API_KEY
 
 
 class Item:
     def __init__(self, name):
-        self.url = 'https://api.neople.co.kr/df/items?itemName=' + name + '&limit=20&wordType=match&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'
-        self.url2 = self.itemId = self.itemName = self.itemRarity = self.itemType = self.itemTypeDetail = self.itemAvailableLevel\
-            = self.itemObtainInfo = self.itemExplainDetail = self.itemFlavorText = self.setItemName = self.itemName\
-            = self.itemStatus = self.itemReinforceSkill = ""
+        self.url = "https://api.neople.co.kr/df/items?itemName={name}&limit=20&wordType=match&apikey={key}"\
+            .format(name=name, key=API_KEY)
+        self.url2 = self.itemId = self.itemName = self.itemRarity = self.itemType\
+            = self.itemTypeDetail = self.itemAvailableLevel = self.itemObtainInfo\
+            = self.itemExplainDetail = self.itemFlavorText = self.setItemName\
+            = self.itemName = self.itemStatus = self.itemReinforceSkill = ""
 
     def select(self):
         item_list = []
@@ -44,7 +47,7 @@ class Item:
         re2.close()
 
     def run(self):
-        self.url2 = 'https://api.neople.co.kr/df/items/{id}?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'.format(id=self.itemId)
+        self.url2 = 'https://api.neople.co.kr/df/items/{id}?apikey={key}'.format(id=self.itemId, key=API_KEY)
         try:
             o1 = requests.get(self.url2)
             o = o1.json()
@@ -99,7 +102,8 @@ class Item:
             if 'levelRange' in skill.keys():
                 for range in skill['levelRange']:
                     if range['minLevel'] != range['maxLevel']:
-                        print("{min} ~ {max} Lv 스킬 + {value}".format(min=range['minLevel'], max=range['maxLevel'], value=range['value']))
+                        print("{min} ~ {max} Lv 스킬 + {value}"
+                              .format(min=range['minLevel'], max=range['maxLevel'], value=range['value']))
                     else:
                         print("{min} Lv 스킬 + {value}".format(min=range['minLevel'], value=range['value']))
 

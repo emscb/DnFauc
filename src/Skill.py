@@ -1,10 +1,12 @@
 import csv
 import requests
+from Config import API_KEY
 
 
 class Skill:
     def __init__(self, name):
-        self.url = 'https://api.neople.co.kr/df/items?itemName={name}&limit=30&wordType=match&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'.format(name=name)
+        self.url = 'https://api.neople.co.kr/df/items?itemName={name}&limit=30&wordType=match&apikey={key}'\
+            .format(name=name, key=API_KEY)
         self.itemList = []
         self.idList = []
 
@@ -23,7 +25,7 @@ class Skill:
 
     def run(self):
         for id in self.idList:
-            url2 = 'https://api.neople.co.kr/df/items/{id}?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'.format(id=id)
+            url2 = 'https://api.neople.co.kr/df/items/{id}?apikey={key}'.format(id=id, key=API_KEY)
             try:
                 re2 = requests.get(url2)
                 re = re2.json()

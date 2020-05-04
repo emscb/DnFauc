@@ -1,11 +1,12 @@
 import requests
 import csv
+from Config import API_KEY
 
 
 class CharId:
     def __init__(self, name, server):
-        self.url = "https://api.neople.co.kr/df/servers/{server}/characters?characterName={name}&apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG".format(
-            server=server, name=name)
+        self.url = "https://api.neople.co.kr/df/servers/{server}/characters?characterName={name}&apikey={key}".format(
+            server=server, name=name, key=API_KEY)
         self.characterId = self.level = self.jobId = self.jodGrowId = self.jobName = self.jobGrowName = ""
 
     def run(self):
@@ -27,8 +28,8 @@ class CharId:
 
 class CharInf:
     def __init__(self, id, server):
-        self.url = "https://api.neople.co.kr/df/servers/{server}/characters/{id}?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG".format(
-            server=server, id=id)
+        self.url = "https://api.neople.co.kr/df/servers/{server}/characters/{id}?apikey={key}".format(
+            server=server, id=id, key=API_KEY)
         self.adventureName = self.guildId = self.guildName = ""
 
     def run(self):
@@ -47,8 +48,8 @@ class CharInf:
 
 class CharSkill:
     def __init__(self, id, server):
-        self.url = 'https://api.neople.co.kr/df/servers/{server}/characters/{id}/skill/style?apikey=nJeolB5EWc0nUNTYk62nFcPH3e9L9WJG'.format(
-            server=server, id=id)
+        self.url = 'https://api.neople.co.kr/df/servers/{server}/characters/{id}/skill/style?apikey={key}'.format(
+            server=server, id=id, key=API_KEY)
         self.skillList = []
 
     def run(self):
