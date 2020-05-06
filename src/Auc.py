@@ -8,7 +8,7 @@ class Auc:
         self.item_name = name
         self.limit = 5
         self.url = "https://api.neople.co.kr/df/auction?itemName={name}&limit={limit}&sort=unitPrice:asc&apikey={key}"\
-            .format(name=name, limit=self.limit, key=API_KEY)
+            .format(name=self.item_name, limit=self.limit, key=API_KEY)
         self.status = False
         self.registered_list = self.crawl()
         if self.registered_list != -1:
@@ -51,7 +51,7 @@ class Auc:
         try:
             for i in self.registered_list:
                 if i['unitPrice'] != 0:
-                    self.price.append([now, weekday[t.tm_wday], i['itemName'], i['averagePrice']])
+                    self.price.append([now, weekday[t.tm_wday], i['itemId'], i['itemName'], i['averagePrice']])
         except KeyError:  # unitPrice가 없으면 평균가가 적혀있지 않음
             print('즉시 구매 가능한 아이템이 없어 넘어갑니다.')
             return -1
