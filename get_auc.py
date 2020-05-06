@@ -1,7 +1,9 @@
 # 각 항목에 대해 경매장 평균가를 저장
 from src.Auc import Auc
 import time
+import requests
 import sqlite3
+from Config import KOA_URL
 
 db_path = "auction.db"
 itemList = []
@@ -31,11 +33,34 @@ for j in itemObj:
     price = j.get_avg_price()
     if price == -1:
         continue
-    sq = '''INSERT INTO aucInfo VALUES(?,?,?,?)'''
+    sq = '''INSERT INTO aucInfo VALUES(?,?,?,?,?)'''
     value = tuple(price[0])
     rm = c.execute(sq, value)
     conn.commit()
     print(time.ctime(), j.item_name, '\b의 가격이 입력되었습니다.')
+
+add_list = []
+sync_date = ""
+try:
+    sync_date = requests.get("{url}/config".format(url=KOA_URL))
+    sync_date = sync_date.json()["dbsync"]
+except requests.exceptions.ConnectionError:
+    print("Koa와 연결하는 데 실패했습니다.")
+except KeyError:
+    print("DB 동기화 정보가 없습니다.")
+else:
+    print(sync_date)
+    add_list_table = c.execute('''SELECT aucdate, itemName, itemId, avgPrice FROM aucInfo WHERE aucdate >= "{date}"'''
+                               .format(date=sync_date))
+
+    for a in add_list_table:
+        add_list.append(list(a))
+add_dict = {"list": add_list}
+
+try:
+    r = requests.put("{url}/auc/2020-05-06".format(url=KOA_URL), add_dict)
+except requests.exceptions.ConnectionError:
+    print("Koa와 연결하는 데 실패했습니다.")
 
 conn.close()
 
