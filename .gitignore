@@ -1,2 +1,9 @@
 
 Config.py
+
+__pycache__
+.idea
+
+*.db
+
+temp.py
