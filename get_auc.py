@@ -54,21 +54,22 @@ except KeyError:
 else:
     if sync_date == now:
         print("DB 동기화가 이미 이뤄졌습니다.")
-        exit(-1)
-    add_list_table = c.execute('''SELECT aucdate, itemName, itemId, avgPrice FROM aucInfo WHERE aucdate >= "{date}"'''
-                               .format(date=sync_date))
+    else:
+        add_list_table = c.execute(
+            '''SELECT aucdate, itemName, itemId, avgPrice FROM aucInfo WHERE aucdate >= "{date}"'''
+            .format(date=sync_date))
 
-    for a in add_list_table:
-        add_list.append(json.dumps({"date": a[0], "itemName": a[1], "itemId": a[2], "avgPrice": a[3]}))
-add_dict = {"list": add_list}
+        for a in add_list_table:
+            add_list.append(json.dumps({"date": a[0], "itemName": a[1], "itemId": a[2], "avgPrice": a[3]}))
 
+        add_dict = {"list": add_list}
 
-try:
-    r = requests.put("{url}/auc/{date}".format(url=KOA_URL, date=now), add_dict)
-    if r.status_code == 413:
-        print("동기화해야 할 데이터가 너무 많습니다.")
-except requests.exceptions.ConnectionError:
-    print("Koa와 연결하는 데 실패했습니다.")
+        try:
+            r = requests.put("{url}/auc/{date}".format(url=KOA_URL, date=now), add_dict)
+            if r.status_code == 413:
+                print("동기화해야 할 데이터가 너무 많습니다.")
+        except requests.exceptions.ConnectionError:
+            print("Koa와 연결하는 데 실패했습니다.")
 
 conn.close()
 
