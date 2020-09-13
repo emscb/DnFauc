@@ -7,3 +7,5 @@ __pycache__
 *.db
 
 temp.py
+
+pyconkr2020_d_day.py
