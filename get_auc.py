@@ -42,8 +42,8 @@ for j in itemObj:
 
 add_list = []
 sync_date = ""
-t = time.localtime(time.time())
-now = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday)
+now = time.localtime(time.time())
+today = '%04d-%02d-%02d' % (now.tm_year, now.tm_mon, now.tm_mday)
 try:
     sync_date = requests.get("{url}/config".format(url=KOA_URL))
     sync_date = sync_date.json()["dbsync"]
@@ -52,12 +52,11 @@ except requests.exceptions.ConnectionError:
 except KeyError:
     print("DB 동기화 정보가 없습니다.")
 else:
-    if sync_date == now:
+    if sync_date == today:
         print("DB 동기화가 이미 이뤄졌습니다.")
     else:
-        add_list_table = c.execute(
-            '''SELECT aucdate, itemName, itemId, avgPrice FROM aucInfo WHERE aucdate >= "{date}"'''
-            .format(date=sync_date))
+            add_list_table = c.execute(
+                f'''SELECT aucdate, itemName, itemId, avgPrice FROM aucInfo WHERE aucdate = "{set_date}"''')
 
         for a in add_list_table:
             add_list.append(json.dumps({"date": a[0], "itemName": a[1], "itemId": a[2], "avgPrice": a[3]}))
@@ -65,7 +64,7 @@ else:
         add_dict = {"list": add_list}
 
         try:
-            r = requests.put("{url}/auc/{date}".format(url=KOA_URL, date=now), add_dict)
+                r = requests.put("{url}/auc/{date}".format(url=KOA_URL,
             if r.status_code == 413:
                 print("동기화해야 할 데이터가 너무 많습니다.")
         except requests.exceptions.ConnectionError:
