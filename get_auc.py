@@ -1,5 +1,6 @@
 # 각 항목에 대해 경매장 평균가를 저장
 from src.Auc import Auc
+import datetime
 import time
 import requests
 import sqlite3
@@ -55,20 +56,28 @@ else:
     if sync_date == today:
         print("DB 동기화가 이미 이뤄졌습니다.")
     else:
+        sync_date = datetime.datetime.strptime(sync_date, "%Y-%m-%d")
+        while sync_date.strftime("%Y-%m-%d") != today:
+            set_date = sync_date.strftime("%Y-%m-%d")
             add_list_table = c.execute(
                 f'''SELECT aucdate, itemName, itemId, avgPrice FROM aucInfo WHERE aucdate = "{set_date}"''')
 
-        for a in add_list_table:
-            add_list.append(json.dumps({"date": a[0], "itemName": a[1], "itemId": a[2], "avgPrice": a[3]}))
+            for a in add_list_table:
+                add_list.append(json.dumps({"date": a[0], "itemName": a[1], "itemId": a[2], "avgPrice": a[3]}))
 
-        add_dict = {"list": add_list}
+            add_dict = {"list": add_list}
 
-        try:
+            try:
                 r = requests.put("{url}/auc/{date}".format(url=KOA_URL,
-            if r.status_code == 413:
-                print("동기화해야 할 데이터가 너무 많습니다.")
-        except requests.exceptions.ConnectionError:
-            print("Koa와 연결하는 데 실패했습니다.")
+                                                           date=(sync_date + datetime.timedelta(days=1)).strftime(
+                                                               "%Y-%m-%d")), add_dict)
+                if r.status_code == 413:
+                    print("동기화해야 할 데이터가 너무 많습니다.")
+            except requests.exceptions.ConnectionError:
+                print("Koa와 연결하는 데 실패했습니다.")
+            else:
+                sync_date += datetime.timedelta(days=1)
+                add_list = []
 
 conn.close()
 
